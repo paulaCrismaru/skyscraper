@@ -1,0 +1,6 @@
+skyscraper.sublime-project
+skyscraper.sublime-workspace
+.venv
+test.py
+db*
+*.pyc
