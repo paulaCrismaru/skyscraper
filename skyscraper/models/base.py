@@ -1,6 +1,8 @@
+from skyscraper import config
 import peewee
 
-database = peewee.SqliteDatabase(database="db0")
+CONF = config.CONF
+database = peewee.SqliteDatabase(database=CONF.database.name)
 
 
 class BaseModel(peewee.Model):
