@@ -56,3 +56,9 @@ def select_all_flights(model=Fligths):
 def clear_all(model=Fligths):
     query = model.delete()
     query.execute()
+
+
+def delete_indexes(indexes):
+    for index in indexes:
+        query = Fligths.delete().where(Fligths.id == index)
+        query.execute()
