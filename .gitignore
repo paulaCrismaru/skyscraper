@@ -4,3 +4,4 @@ skyscraper.sublime-workspace
 test.py
 db*
 *.pyc
+*rc
