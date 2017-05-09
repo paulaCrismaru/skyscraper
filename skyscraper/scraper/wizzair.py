@@ -1,10 +1,13 @@
 import re
 from skyscraper.scraper import base
+from skyscraper import config
+
+CONF = config.CONF
 
 
 class WizzScrapper(base.BaseScrapper):
 
-    URL = 'https://be.wizzair.com/5.0.0/Api/asset/farechart'
+    URL = CONF.wizzair.url
     operator = 'wizzair'
 
     def __init__(self):
