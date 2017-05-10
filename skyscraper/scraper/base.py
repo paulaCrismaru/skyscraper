@@ -14,8 +14,6 @@ class BaseScrapper(object):
         self.url = url
 
     def _send_post(self, headers, payload):
-        if type(payload) is str:
-            payload = json.loads(payload)
         request_response = requests.post(
             self.url, headers=headers, json=payload)
         if request_response.status_code == 503:
@@ -34,11 +32,11 @@ class BaseScrapper(object):
                                         date=date)
         json_schema = json.loads(string_schema)
         request_headers = self.get_user_agent()
-        request_headers['content-length'] = len(string_schema)
+        request_headers['content-length'] = str(len(string_schema))
         try:
             response = self._send_post(request_headers, json_schema)
         except exception.SkyscraperException as ex:
-            LOG.error(ex.message)
+            LOG.error(str(ex))
             return None
         return self._get_valid_fligths(response)
 
@@ -87,11 +85,9 @@ class BaseScrapper(object):
                           "Safari / 537.36"
         }
 
-
     @abc.abstractmethod
     def _get_origin(self):
         pass
-
 
     @abc.abstractmethod
     def _get_referer(self):
