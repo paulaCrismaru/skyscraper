@@ -28,7 +28,7 @@ class WizzScrapper(base.BaseScrapper):
                     '"date": "{date}" ' \
                '}}], '\
             '"isRescueFare": "false", '\
-            '"wdc": "false" '\
+            '"wdc": "false"' \
             '}}'
         return template
 
@@ -46,3 +46,9 @@ class WizzScrapper(base.BaseScrapper):
 
     def _is_valid_flight(self, flight):
         return flight.get('price')
+
+    def _get_origin(self):
+        return CONF.wizzair.origin
+
+    def _get_referer(self):
+        return CONF.wizzair.referer

@@ -3,10 +3,13 @@ import configparser
 
 _DEFAULT_CONFIG_FILES = [
     config_file for config_file in (os.path.join("skyscraper", "config", "skyscraper.conf"),
-                                    os.path.join("skyscraper", "skyscraper.conf"),
-                                    os.path.join("tmp", "skyscraper.conf"))
+                                    os.path.join("skyscraper", "skyscraper.conf"))
         if os.path.isfile(os.path.join(os.path.curdir, config_file))
     ]
+
+if os.path.isfile(os.path.join(os.sep, "tmp", "skyscraper.conf")):
+    _DEFAULT_CONFIG_FILES.append(
+        os.path.join(os.sep, "tmp", "skyscraper.conf"))
 
 
 class ConfigParser(object):
@@ -15,7 +18,7 @@ class ConfigParser(object):
         self._config = configparser.ConfigParser()
         self._config.read(config_file)
 
-        for name, section in self._config.iteritems():
+        for name, section in self._config.items():
             if not hasattr(self, name):
                 self._add_section(name)
             self._add_values_to_section(name, section)
